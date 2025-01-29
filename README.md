@@ -8,6 +8,7 @@ The system is designed to be scalable, efficient, and cloud-deployable, leveragi
 This repository contains the data pipeline, model training scripts, API services, and deployment configurations for the chatbot. Future updates will include real-time monitoring, automated model retraining, and enhanced response generation. 🚀
 
 # Folder Structure Overview
+```
 project-root/
 ├── README.md                 # Comprehensive project documentation, setup guide, and usage instructions
 ├── data/                     # Directory for dataset storage and management
@@ -41,4 +42,4 @@ project-root/
 ├── .gitignore                # Files and directories to be ignored in version control
 ├── LICENSE                   # License for the project
 └── CONTRIBUTING.md           # Guidelines for contributing to the repository
-
+```
