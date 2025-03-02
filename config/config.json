@@ -1,0 +1,9 @@
+{
+    "service_account_json": "mlops-speakingchatbot-bbf56d657908.json",
+    "bucket_name": "speaking-chatbot-data",
+    "folder_path": "/data",
+    "files_to_upload": [
+        "software_metadata_preprocessed.jsonl",
+        "software_reviews_preprocessed.jsonl"
+    ]
+}
