@@ -2,12 +2,15 @@ import json
 import os
 import gzip
 import logging
+import requests
+
 
 # Ensure logs directory exists
 PROJECT_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 logs_dir = os.path.join(PROJECT_DIR, "logs")
 os.makedirs(logs_dir, exist_ok=True)
 log_file_path = os.path.join(logs_dir, "pipeline.log")
+
 
 # Configure logging
 logging.basicConfig(
@@ -17,11 +20,10 @@ logging.basicConfig(
 )
 
 
-# Slack Webhook URL (Replace this with your actual webhook)
 SLACK_WEBHOOK_URL = "https://hooks.slack.com/services/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"
 
 def send_slack_alert(message):
-    """Sends an alert message to Slack via webhook."""
+
     payload = {"text": f":warning: *Data Anomaly Detected* :warning:\n{message}"}
     try:
         response = requests.post(SLACK_WEBHOOK_URL, json=payload)
@@ -32,8 +34,10 @@ def send_slack_alert(message):
     except Exception as e:
         logging.error(f"Error sending Slack alert: {e}")
 
+
 def detect_anomalies(record):
     """Detects anomalies such as missing values, outliers, and invalid formats."""
+    print("Inside anamolies")
     anomalies = []
 
     # Check for missing values
@@ -55,6 +59,7 @@ def detect_anomalies(record):
         send_slack_alert(message)
 
     return record
+
 
 def clean_data(record):
     """Cleans the data by handling missing values and normalizing strings."""
@@ -81,11 +86,12 @@ def clean_data(record):
 
         else:
             cleaned_record[key] = str(value)
-    logging.info("Data cleaning completed")
+
     return cleaned_record
 
+
 def transform_data(record):
-    """Applies transformations such as standardizing field names and data formatting."""
+
     transformed_record = {}
     for key, value in record.items():
         new_key = key.lower().replace(" ", "_")  # Standardizing column names
@@ -95,8 +101,9 @@ def transform_data(record):
             transformed_record[new_key] = transform_data(value)
         else:
             transformed_record[new_key] = value
-    logging.info("Data transformation completed")
+    
     return transformed_record
+
 
 def feature_engineering(record):
 
@@ -115,7 +122,7 @@ def feature_engineering(record):
             record["review_sentiment"] = "Neutral"
         else:
             record["review_sentiment"] = "Negative"
-    logging.info("Feature engineering completed")
+    
     return record
 
 
@@ -123,7 +130,6 @@ def preprocess_record(record):
     record = clean_data(record)
     record = transform_data(record)
     record = feature_engineering(record)
-    logging.info("Preprocess record completed")
     return record
 
 
@@ -147,7 +153,7 @@ def preprocess_jsonl_file(input_file, output_file):
                 processed_record = preprocess_record(record)
                 outfile.write(json.dumps(processed_record) + "\n")
             except json.JSONDecodeError as e:
-                print(f"Skipping invalid JSON line: {e}")
+                logging.info(f"Skipping invalid JSON line: {e}")
 
     logging.info(f"Preprocessed data saved to: {output_file}")
 
@@ -160,7 +166,7 @@ def get_file_content(file_path, num_lines=5):
                 line = file.readline().strip()
                 if not line:
                     break
-                print(line)
+                logging.info(line)
     except Exception as e:
         logging.info(f"Error reading file {file_path}: {e}")
 
@@ -177,7 +183,6 @@ if __name__ == "__main__":
 
     preprocess_jsonl_file(metadata_file, cleaned_metadata_file)
     get_file_content(cleaned_metadata_file)
-
 
     # Input file (compressed .jsonl.gz)
     reviews_file = os.path.join(data_dir, "software_reviews.jsonl.gz")

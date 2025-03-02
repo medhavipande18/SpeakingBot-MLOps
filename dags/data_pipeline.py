@@ -3,7 +3,6 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 import os
-import sys
 import subprocess
 
 # Ensure logs directory exists
@@ -23,7 +22,9 @@ logging.basicConfig(
 data_acquisition_script = os.path.join(root_dir, "scripts", "data_acquisition.py")
 data_preprocessing_script = os.path.join(root_dir, "scripts", "data_preprocessing.py")
 upload_to_gcs_script = os.path.join(root_dir, "scripts", "upload_to_gcs.py")
+dvc_pipeline_script = os.path.join(root_dir, "scripts", "dvc_pipeline.py")
 test_folder = os.path.join(root_dir, "tests")
+
 
 # Default arguments for Airflow tasks
 default_args = {
@@ -34,13 +35,15 @@ default_args = {
     "retry_delay": timedelta(minutes=5),
 }
 
+
 dag = DAG(
     dag_id="data_pipeline",
     default_args=default_args,
-    description="An Airflow DAG to orchestrate data acquisition, transformation, upload, and testing",
+    description="An Airflow DAG to orchestrate data acquisition, transformation, upload, testing, and DVC tracking",
     schedule_interval="0 * * * *",
     catchup=False,
 )
+
 
 def run_script(script_path):
     """Executes a Python script as a subprocess and logs its execution."""
@@ -51,6 +54,7 @@ def run_script(script_path):
     except subprocess.CalledProcessError as e:
         logging.error(f"Error executing {script_path}: {e}")
 
+
 def run_tests():
     """Runs Pytest on the test folder and logs results."""
     try:
@@ -60,6 +64,7 @@ def run_tests():
     except subprocess.CalledProcessError as e:
         logging.error(f"Tests failed: {e}")
 
+
 # Define tasks
 download_data = PythonOperator(
     task_id="download_data",
@@ -68,6 +73,7 @@ download_data = PythonOperator(
     dag=dag,
 )
 
+
 preprocess_data = PythonOperator(
     task_id="clean_data",
     python_callable=run_script,
@@ -75,11 +81,13 @@ preprocess_data = PythonOperator(
     dag=dag,
 )
 
+
 run_tests_task = PythonOperator(
     task_id="run_tests",
     python_callable=run_tests,
     dag=dag,
 )
+
 
 upload_data = PythonOperator(
     task_id="upload_to_gcs",
@@ -88,7 +96,16 @@ upload_data = PythonOperator(
     dag=dag,
 )
 
+
+dvc_pipeline = PythonOperator(
+    task_id="run_dvc_pipeline",
+    python_callable=run_script,
+    op_kwargs={"script_path": dvc_pipeline_script},
+    dag=dag,
+)
+
+
 # Define task dependencies
-download_data >> preprocess_data >> run_tests_task >> upload_data
+download_data >> preprocess_data >> run_tests_task >> upload_data >> dvc_pipeline
 
 logging.info("Airflow DAG setup complete.")

@@ -57,18 +57,19 @@ def get_file_content(file_path):
         logging.error(f"Error reading file {file_path}: {e}")
 
 if __name__ == "__main__":
+    
     logging.info("Starting data acquisition...")
     root_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     data_dir = os.path.join(root_dir, "data")
     check_directory_exists(data_dir)
     
-    review_url = "https://example.com/software_reviews.jsonl.gz"
+    review_url = "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/raw/review_categories/Software.jsonl.gz"
     review_file = os.path.join(data_dir, "software_reviews.jsonl.gz")
     
     download_file(review_url, review_file)
     get_file_content(review_file)
 
-    metadata_url = "https://example.com/software_metadata.jsonl.gz"
+    metadata_url = "https://mcauleylab.ucsd.edu/public_datasets/data/amazon_2023/raw/meta_categories/meta_Software.jsonl.gz"
     metadata_file = os.path.join(data_dir, "software_metadata.jsonl.gz")
     
     download_file(metadata_url, metadata_file)
