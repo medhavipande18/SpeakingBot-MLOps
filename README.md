@@ -180,5 +180,3 @@ The README provides clear steps to replicate the pipeline on any machine. The en
 12. Error Handling and Logging
 Fulfilled by: Logging mechanisms in all scripts
 Comprehensive logging is implemented across all scripts. Errors are logged with sufficient details, ensuring quick debugging and issue resolution.
-
-// Test
