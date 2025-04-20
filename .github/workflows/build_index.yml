@@ -29,6 +29,7 @@ jobs:
       - name: Build FAISS Index
         env:
           GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/gcp_key.json
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           cd model_pipeline/voice-backend
           python build-faiss-index.py
