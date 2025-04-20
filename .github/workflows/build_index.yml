@@ -23,7 +23,7 @@ jobs:
 
       - name: Write GCP Credentials File
         run: |
-          echo "${{ secrets.GCP_CREDENTIALS }}" > gcp_key.json
+          printf "%s" "${{ secrets.GCP_CREDENTIALS }}" > gcp_key.json
         shell: bash
 
       - name: Build FAISS Index
