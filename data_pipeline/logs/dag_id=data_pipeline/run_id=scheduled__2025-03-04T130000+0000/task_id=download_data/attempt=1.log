@@ -1,0 +1,23 @@
+[2025-03-04T14:30:03.401+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-04T14:30:03.417+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_pipeline.download_data scheduled__2025-03-04T13:00:00+00:00 [queued]>
+[2025-03-04T14:30:03.425+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_pipeline.download_data scheduled__2025-03-04T13:00:00+00:00 [queued]>
+[2025-03-04T14:30:03.426+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-04T14:30:03.445+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): download_data> on 2025-03-04 13:00:00+00:00
+[2025-03-04T14:30:03.456+0000] {standard_task_runner.py:72} INFO - Started process 2867 to run task
+[2025-03-04T14:30:03.460+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'data_pipeline', 'download_data', 'scheduled__2025-03-04T13:00:00+00:00', '--job-id', '89', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline.py', '--cfg-path', '/tmp/tmpbjh4ws2w']
+[2025-03-04T14:30:03.462+0000] {standard_task_runner.py:105} INFO - Job 89: Subtask download_data
+[2025-03-04T14:30:03.490+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-04T14:30:03.529+0000] {task_command.py:467} INFO - Running <TaskInstance: data_pipeline.download_data scheduled__2025-03-04T13:00:00+00:00 [running]> on host b5502d51568b
+[2025-03-04T14:30:03.532+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-04T14:30:03.646+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='data_pipeline' AIRFLOW_CTX_TASK_ID='download_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-04T13:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-04T13:00:00+00:00'
+[2025-03-04T14:30:03.648+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-04T14:30:03.676+0000] {data_pipeline.py:51} INFO - Executing script: /opt/airflow/scripts/data_acquisition.py
+[2025-03-04T17:16:02.809+0000] {job.py:229} INFO - Heartbeat recovered after 9898.76 seconds
+[2025-03-04T19:31:08.352+0000] {job.py:229} INFO - Heartbeat recovered after 8099.50 seconds
+[2025-03-04T19:31:08.911+0000] {data_pipeline.py:53} INFO - Successfully executed: /opt/airflow/scripts/data_acquisition.py
+[2025-03-04T19:31:08.916+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-04T19:31:08.965+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-04T19:31:08.968+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_pipeline, task_id=download_data, run_id=scheduled__2025-03-04T13:00:00+00:00, execution_date=20250304T130000, start_date=20250304T143003, end_date=20250304T193108
+[2025-03-04T19:31:09.109+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-04T19:31:09.187+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-04T19:31:09.194+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

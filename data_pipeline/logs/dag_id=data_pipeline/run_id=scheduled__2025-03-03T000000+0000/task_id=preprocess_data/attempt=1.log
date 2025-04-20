@@ -1,0 +1,21 @@
+[2025-03-03T01:55:35.962+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-03T01:55:36.000+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_pipeline.preprocess_data scheduled__2025-03-03T00:00:00+00:00 [queued]>
+[2025-03-03T01:55:36.014+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_pipeline.preprocess_data scheduled__2025-03-03T00:00:00+00:00 [queued]>
+[2025-03-03T01:55:36.015+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-03T01:55:36.040+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): preprocess_data> on 2025-03-03 00:00:00+00:00
+[2025-03-03T01:55:36.056+0000] {standard_task_runner.py:72} INFO - Started process 134 to run task
+[2025-03-03T01:55:36.067+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'data_pipeline', 'preprocess_data', 'scheduled__2025-03-03T00:00:00+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline.py', '--cfg-path', '/tmp/tmpr7lrgw6o']
+[2025-03-03T01:55:36.076+0000] {standard_task_runner.py:105} INFO - Job 4: Subtask preprocess_data
+[2025-03-03T01:55:36.135+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-03T01:55:36.202+0000] {task_command.py:467} INFO - Running <TaskInstance: data_pipeline.preprocess_data scheduled__2025-03-03T00:00:00+00:00 [running]> on host 71fb9604a64f
+[2025-03-03T01:55:36.210+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-03T01:55:36.345+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='data_pipeline' AIRFLOW_CTX_TASK_ID='preprocess_data' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-03T00:00:00+00:00'
+[2025-03-03T01:55:36.347+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-03T01:55:36.386+0000] {data_pipeline.py:63} INFO - Running script: /opt/airflow/scripts/data_preprocessing.py
+[2025-03-03T01:58:14.647+0000] {data_pipeline.py:65} INFO - Successfully executed: /opt/airflow/scripts/data_preprocessing.py
+[2025-03-03T01:58:14.655+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-03T01:58:14.699+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-03T01:58:14.701+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_pipeline, task_id=preprocess_data, run_id=scheduled__2025-03-03T00:00:00+00:00, execution_date=20250303T000000, start_date=20250303T015536, end_date=20250303T015814
+[2025-03-03T01:58:14.787+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-03T01:58:14.838+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-03T01:58:14.853+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

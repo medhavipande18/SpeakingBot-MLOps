@@ -1,0 +1,20 @@
+[2025-03-03T02:15:00.146+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-03T02:15:00.167+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_pipeline.dvc_pipeline manual__2025-03-03T01:53:22.667705+00:00 [queued]>
+[2025-03-03T02:15:00.185+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_pipeline.dvc_pipeline manual__2025-03-03T01:53:22.667705+00:00 [queued]>
+[2025-03-03T02:15:00.186+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-03T02:15:00.220+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): dvc_pipeline> on 2025-03-03 01:53:22.667705+00:00
+[2025-03-03T02:15:00.231+0000] {standard_task_runner.py:72} INFO - Started process 507 to run task
+[2025-03-03T02:15:00.236+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'data_pipeline', 'dvc_pipeline', 'manual__2025-03-03T01:53:22.667705+00:00', '--job-id', '20', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline.py', '--cfg-path', '/tmp/tmprx4ehxuy']
+[2025-03-03T02:15:00.239+0000] {standard_task_runner.py:105} INFO - Job 20: Subtask dvc_pipeline
+[2025-03-03T02:15:00.281+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-03T02:15:00.321+0000] {task_command.py:467} INFO - Running <TaskInstance: data_pipeline.dvc_pipeline manual__2025-03-03T01:53:22.667705+00:00 [running]> on host 71fb9604a64f
+[2025-03-03T02:15:00.416+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='data_pipeline' AIRFLOW_CTX_TASK_ID='dvc_pipeline' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T01:53:22.667705+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-03-03T01:53:22.667705+00:00'
+[2025-03-03T02:15:00.420+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-03T02:15:00.443+0000] {data_pipeline.py:63} INFO - Running script: /opt/airflow/scripts/dvc_pipeline.py
+[2025-03-03T02:15:02.486+0000] {data_pipeline.py:67} ERROR - Error executing /opt/airflow/scripts/dvc_pipeline.py: Command '['python', '/opt/airflow/scripts/dvc_pipeline.py']' returned non-zero exit status 1.
+[2025-03-03T02:15:02.488+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-03T02:15:02.499+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-03T02:15:02.502+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_pipeline, task_id=dvc_pipeline, run_id=manual__2025-03-03T01:53:22.667705+00:00, execution_date=20250303T015322, start_date=20250303T021500, end_date=20250303T021502
+[2025-03-03T02:15:02.555+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-03T02:15:02.596+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-03T02:15:02.615+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

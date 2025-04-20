@@ -1,0 +1,19 @@
+runtime: python310
+entrypoint: gunicorn -b :$PORT app:app
+
+instance_class: F2
+
+env_variables:
+  PYTHONUNBUFFERED: "TRUE"
+  USE_GCS: "true"
+  GCS_BUCKET: "your-gcs-bucket-name"
+  
+automatic_scaling:
+  min_instances: 1
+  max_instances: 5
+  target_cpu_utilization: 0.65
+
+handlers:
+- url: /.*
+  script: auto
+  secure: always

@@ -1,0 +1,24 @@
+2025-03-03 02:27:35,603 - ERROR - File not found: /opt/airflow/data/software_metadata_preprocessed.jsonl
+2025-03-03 02:27:35,608 - ERROR - File not found: /opt/airflow/data/software_reviews_preprocessed.jsonl
+2025-03-03 02:27:35,611 - ERROR - No data available for bias analysis.
+2025-03-03 02:27:46,052 - ERROR - File not found: /opt/airflow/data/software_metadata_preprocessed.jsonl
+2025-03-03 02:27:46,055 - ERROR - File not found: /opt/airflow/data/software_reviews_preprocessed.jsonl
+2025-03-03 02:27:46,057 - ERROR - No data available for bias analysis.
+2025-03-03 02:27:56,176 - ERROR - Error loading /opt/airflow/data/software_metadata_preprocessed.jsonl: Expected object or value
+2025-03-03 02:27:56,188 - ERROR - Error loading /opt/airflow/data/software_reviews_preprocessed.jsonl: Expected object or value
+2025-03-03 02:27:56,189 - ERROR - No data available for bias mitigation.
+2025-03-03 02:28:04,977 - ERROR - Error loading /opt/airflow/data/software_metadata_preprocessed.jsonl: Expected object or value
+2025-03-03 02:28:04,980 - ERROR - Error loading /opt/airflow/data/software_reviews_preprocessed.jsonl: Expected object or value
+2025-03-03 02:28:04,984 - ERROR - No data available for bias mitigation.
+2025-03-03 03:00:21,174 - ERROR - File not found: /opt/airflow/data/software_metadata_preprocessed.jsonl
+2025-03-03 03:00:21,186 - ERROR - File not found: /opt/airflow/data/software_reviews_preprocessed.jsonl
+2025-03-03 03:00:21,187 - ERROR - No data available for bias analysis.
+2025-03-03 03:00:29,322 - ERROR - Error loading /opt/airflow/data/software_metadata_preprocessed.jsonl: Expected object or value
+2025-03-03 03:00:29,325 - ERROR - Error loading /opt/airflow/data/software_reviews_preprocessed.jsonl: Expected object or value
+2025-03-03 03:00:29,327 - ERROR - No data available for bias mitigation.
+2025-03-03 04:00:24,064 - ERROR - File not found: /opt/airflow/data/software_metadata_preprocessed.jsonl
+2025-03-03 04:00:24,065 - ERROR - File not found: /opt/airflow/data/software_reviews_preprocessed.jsonl
+2025-03-03 04:00:24,066 - ERROR - No data available for bias analysis.
+2025-03-03 04:00:32,434 - ERROR - Error loading /opt/airflow/data/software_metadata_preprocessed.jsonl: Expected object or value
+2025-03-03 04:00:32,437 - ERROR - Error loading /opt/airflow/data/software_reviews_preprocessed.jsonl: Expected object or value
+2025-03-03 04:00:32,438 - ERROR - No data available for bias mitigation.

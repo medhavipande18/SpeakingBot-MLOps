@@ -1,0 +1,41 @@
+name: Build FAISS Index (Manual Trigger)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-index-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Python Dependencies
+        run: |
+          cd model_pipeline/voice-backend
+          pip install -r requirements.txt
+
+      - name: Build FAISS Index
+        env:
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          cd model_pipeline/voice-backend
+          python build-faiss-index.py
+
+      - name: Upload FAISS Index to GCP
+        uses: google-github-actions/upload-cloud-storage@v1
+        with:
+          path: model_pipeline/voice-backend/faiss_index.index
+          destination: gs://your-bucket-name/vectors/
+
+      - name: Upload Metadata to GCP
+        uses: google-github-actions/upload-cloud-storage@v1
+        with:
+          path: model_pipeline/voice-backend/index_metadata.json
+          destination: gs://your-bucket-name/vectors/

@@ -1,0 +1,42 @@
+[2025-03-03T02:14:43.480+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-03T02:14:43.510+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_pipeline.generate_schema_statistics scheduled__2025-03-03T01:00:00+00:00 [queued]>
+[2025-03-03T02:14:43.522+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_pipeline.generate_schema_statistics scheduled__2025-03-03T01:00:00+00:00 [queued]>
+[2025-03-03T02:14:43.523+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-03T02:14:43.555+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): generate_schema_statistics> on 2025-03-03 01:00:00+00:00
+[2025-03-03T02:14:43.563+0000] {standard_task_runner.py:72} INFO - Started process 475 to run task
+[2025-03-03T02:14:43.570+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'data_pipeline', 'generate_schema_statistics', 'scheduled__2025-03-03T01:00:00+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline.py', '--cfg-path', '/tmp/tmp86jmudnu']
+[2025-03-03T02:14:43.573+0000] {standard_task_runner.py:105} INFO - Job 18: Subtask generate_schema_statistics
+[2025-03-03T02:14:43.612+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-03T02:14:43.664+0000] {task_command.py:467} INFO - Running <TaskInstance: data_pipeline.generate_schema_statistics scheduled__2025-03-03T01:00:00+00:00 [running]> on host 71fb9604a64f
+[2025-03-03T02:14:43.668+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-03T02:14:43.790+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='data_pipeline' AIRFLOW_CTX_TASK_ID='generate_schema_statistics' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T01:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-03T01:00:00+00:00'
+[2025-03-03T02:14:43.793+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-03T02:14:43.820+0000] {data_pipeline.py:63} INFO - Running script: /opt/airflow/scripts/data_schema_statistics.py
+[2025-03-03T02:14:43.879+0000] {data_pipeline.py:67} ERROR - Error executing /opt/airflow/scripts/data_schema_statistics.py: Command '['python', '/opt/airflow/scripts/data_schema_statistics.py']' returned non-zero exit status 2.
+[2025-03-03T02:14:43.881+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-03T02:14:43.892+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-03T02:14:43.894+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_pipeline, task_id=generate_schema_statistics, run_id=scheduled__2025-03-03T01:00:00+00:00, execution_date=20250303T010000, start_date=20250303T021443, end_date=20250303T021443
+[2025-03-03T02:14:43.955+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-03T02:14:43.993+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-03T02:14:44.003+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
+[2025-03-03T02:28:11.623+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-03-03T02:28:11.660+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_pipeline.generate_schema_statistics scheduled__2025-03-03T01:00:00+00:00 [queued]>
+[2025-03-03T02:28:11.676+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_pipeline.generate_schema_statistics scheduled__2025-03-03T01:00:00+00:00 [queued]>
+[2025-03-03T02:28:11.678+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-03-03T02:28:11.704+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): generate_schema_statistics> on 2025-03-03 01:00:00+00:00
+[2025-03-03T02:28:11.711+0000] {standard_task_runner.py:72} INFO - Started process 303 to run task
+[2025-03-03T02:28:11.715+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'data_pipeline', 'generate_schema_statistics', 'scheduled__2025-03-03T01:00:00+00:00', '--job-id', '10', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline.py', '--cfg-path', '/tmp/tmpidnwt6xz']
+[2025-03-03T02:28:11.718+0000] {standard_task_runner.py:105} INFO - Job 10: Subtask generate_schema_statistics
+[2025-03-03T02:28:11.746+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-03T02:28:11.784+0000] {task_command.py:467} INFO - Running <TaskInstance: data_pipeline.generate_schema_statistics scheduled__2025-03-03T01:00:00+00:00 [running]> on host b5502d51568b
+[2025-03-03T02:28:11.787+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-03-03T02:28:11.878+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='data_pipeline' AIRFLOW_CTX_TASK_ID='generate_schema_statistics' AIRFLOW_CTX_EXECUTION_DATE='2025-03-03T01:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-03-03T01:00:00+00:00'
+[2025-03-03T02:28:11.881+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-03-03T02:28:11.902+0000] {data_pipeline.py:63} INFO - Running script: /opt/airflow/scripts/data_schema_statistics.py
+[2025-03-03T02:28:11.973+0000] {data_pipeline.py:67} ERROR - Error executing /opt/airflow/scripts/data_schema_statistics.py: Command '['python', '/opt/airflow/scripts/data_schema_statistics.py']' returned non-zero exit status 2.
+[2025-03-03T02:28:11.974+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-03-03T02:28:11.990+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-03-03T02:28:11.992+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_pipeline, task_id=generate_schema_statistics, run_id=scheduled__2025-03-03T01:00:00+00:00, execution_date=20250303T010000, start_date=20250303T022811, end_date=20250303T022811
+[2025-03-03T02:28:12.059+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-03-03T02:28:12.105+0000] {taskinstance.py:3901} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2025-03-03T02:28:12.120+0000] {local_task_job_runner.py:245} INFO - ::endgroup::

@@ -1,0 +1,22 @@
+[2025-04-18T17:05:09.637+0000] {local_task_job_runner.py:123} INFO - ::group::Pre task execution logs
+[2025-04-18T17:05:09.654+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: data_pipeline.upload_to_gcs scheduled__2025-04-18T16:00:00+00:00 [queued]>
+[2025-04-18T17:05:09.664+0000] {taskinstance.py:2614} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: data_pipeline.upload_to_gcs scheduled__2025-04-18T16:00:00+00:00 [queued]>
+[2025-04-18T17:05:09.665+0000] {taskinstance.py:2867} INFO - Starting attempt 1 of 2
+[2025-04-18T17:05:09.682+0000] {taskinstance.py:2890} INFO - Executing <Task(PythonOperator): upload_to_gcs> on 2025-04-18 16:00:00+00:00
+[2025-04-18T17:05:09.690+0000] {standard_task_runner.py:72} INFO - Started process 2793 to run task
+[2025-04-18T17:05:09.694+0000] {standard_task_runner.py:104} INFO - Running: ['airflow', 'tasks', 'run', 'data_pipeline', 'upload_to_gcs', 'scheduled__2025-04-18T16:00:00+00:00', '--job-id', '86', '--raw', '--subdir', 'DAGS_FOLDER/data_pipeline.py', '--cfg-path', '/tmp/tmpdnc6n9bn']
+[2025-04-18T17:05:09.697+0000] {standard_task_runner.py:105} INFO - Job 86: Subtask upload_to_gcs
+[2025-04-18T17:05:09.718+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:209 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-04-18T17:05:09.753+0000] {task_command.py:467} INFO - Running <TaskInstance: data_pipeline.upload_to_gcs scheduled__2025-04-18T16:00:00+00:00 [running]> on host e8dafad5cd22
+[2025-04-18T17:05:09.756+0000] {logging_mixin.py:190} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/settings.py:470 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-04-18T17:05:09.850+0000] {taskinstance.py:3134} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='data_pipeline' AIRFLOW_CTX_TASK_ID='upload_to_gcs' AIRFLOW_CTX_EXECUTION_DATE='2025-04-18T16:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-04-18T16:00:00+00:00'
+[2025-04-18T17:05:09.852+0000] {taskinstance.py:732} INFO - ::endgroup::
+[2025-04-18T17:05:09.871+0000] {data_pipeline.py:51} INFO - Executing script: /opt/airflow/scripts/upload_to_gcs.py
+[2025-04-18T17:17:36.664+0000] {job.py:229} INFO - Heartbeat recovered after 711.19 seconds
+[2025-04-18T17:19:44.449+0000] {data_pipeline.py:53} INFO - Successfully executed: /opt/airflow/scripts/upload_to_gcs.py
+[2025-04-18T17:19:44.450+0000] {python.py:240} INFO - Done. Returned value was: None
+[2025-04-18T17:19:44.456+0000] {taskinstance.py:341} INFO - ::group::Post task execution logs
+[2025-04-18T17:19:44.457+0000] {taskinstance.py:353} INFO - Marking task as SUCCESS. dag_id=data_pipeline, task_id=upload_to_gcs, run_id=scheduled__2025-04-18T16:00:00+00:00, execution_date=20250418T160000, start_date=20250418T170509, end_date=20250418T171944
+[2025-04-18T17:19:44.511+0000] {local_task_job_runner.py:266} INFO - Task exited with return code 0
+[2025-04-18T17:19:44.523+0000] {taskinstance.py:3901} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-04-18T17:19:44.524+0000] {local_task_job_runner.py:245} INFO - ::endgroup::
