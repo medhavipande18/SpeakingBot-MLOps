@@ -43,12 +43,12 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@v1
         with:
           path: model_pipeline/voice-backend/faiss_index.index
-          destination: /speaking-chatbot-data/vectors/
+          destination: gs://speaking-chatbot-data/vectors/
           process_gcloudignore: false
 
       - name: Upload Metadata to GCP
         uses: google-github-actions/upload-cloud-storage@v1
         with:
           path: model_pipeline/voice-backend/index_metadata.json
-          destination: /speaking-chatbot-data/vectors/
+          destination: gs://speaking-chatbot-data/vectors/
           process_gcloudignore: false
