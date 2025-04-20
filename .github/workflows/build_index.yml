@@ -1,4 +1,3 @@
-
 name: Build FAISS Index (Manual Trigger)
 
 on:
@@ -22,9 +21,14 @@ jobs:
           cd model_pipeline/voice-backend
           pip install -r requirements.txt
 
+      - name: Write GCP Credentials File
+        run: |
+          echo "${{ secrets.GCP_CREDENTIALS }}" > gcp_key.json
+        shell: bash
+
       - name: Build FAISS Index
         env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+          GOOGLE_APPLICATION_CREDENTIALS: ${{ github.workspace }}/gcp_key.json
         run: |
           cd model_pipeline/voice-backend
           python build-faiss-index.py
