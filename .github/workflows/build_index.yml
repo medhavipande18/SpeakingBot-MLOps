@@ -38,10 +38,12 @@ jobs:
         uses: google-github-actions/upload-cloud-storage@v1
         with:
           path: model_pipeline/voice-backend/faiss_index.index
-          destination: gs://your-bucket-name/vectors/
+          destination: gs://speaking-chatbot-data/vectors/
+          credentials: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: Upload Metadata to GCP
         uses: google-github-actions/upload-cloud-storage@v1
         with:
           path: model_pipeline/voice-backend/index_metadata.json
-          destination: gs://your-bucket-name/vectors/
+          destination: gs://speaking-chatbot-data/vectors/
+          credentials: ${{ secrets.GCP_CREDENTIALS }}
