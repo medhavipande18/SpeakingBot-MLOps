@@ -34,20 +34,17 @@ jobs:
           cd model_pipeline/voice-backend
           python build-faiss-index.py
 
-      # ✅ Authenticate GCP before upload
       - name: Authenticate to GCP
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      # ✅ Upload FAISS index file
       - name: Upload FAISS Index to GCP
         uses: google-github-actions/upload-cloud-storage@v1
         with:
           path: model_pipeline/voice-backend/faiss_index.index
           destination: gs://speaking-chatbot-data/vectors/
 
-      # ✅ Upload metadata
       - name: Upload Metadata to GCP
         uses: google-github-actions/upload-cloud-storage@v1
         with:
