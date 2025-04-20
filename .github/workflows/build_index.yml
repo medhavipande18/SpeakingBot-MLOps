@@ -21,9 +21,9 @@ jobs:
           cd model_pipeline/voice-backend
           pip install -r requirements.txt
 
-      - name: Write GCP Credentials File
+      - name: Decode and Write GCP Credentials File
         run: |
-          printf "%s" "${{ secrets.GCP_CREDENTIALS }}" > gcp_key.json
+          echo "${{ secrets.GCP_CREDENTIALS }}" | base64 -d > gcp_key.json
         shell: bash
 
       - name: Build FAISS Index
