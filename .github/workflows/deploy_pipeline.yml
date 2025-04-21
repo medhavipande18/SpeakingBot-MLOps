@@ -49,11 +49,16 @@ jobs:
       - name: Install Firebase CLI
         run: npm install -g firebase-tools
 
+      - name: Set working directory
+        working-directory: ./model_pipeline
+
       - name: Install dependencies
-        run: npm ci  # or `npm install` if not using lockfile
+        run: npm ci
+        working-directory: ./model_pipeline
 
       - name: Build Vite app
-        run: npm run build  # This creates the dist/ folder
+        run: npm run build
+        working-directory: ./model_pipeline
         
       - name: Build & Deploy to Firebase Hosting
         working-directory: ./model_pipeline/src
