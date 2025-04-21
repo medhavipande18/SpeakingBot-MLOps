@@ -42,7 +42,7 @@ jobs:
 
       - name: Build React App
         run: |
-          cd model_pipeline/src
+          cd model_pipeline
           npm ci
           npm run build
 
