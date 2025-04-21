@@ -24,8 +24,9 @@ def build_prompt_with_rag(user_question, context_memory):
         "You are a helpful assistant. Use the product context below to answer the user's question naturally.\n\n"
         f"=== Product Context ===\n{context}\n\n"
         f"=== User Question ===\n{user_question}\n\n"
-        "If a relevant product is found, respond with its details and end with:\nProduct: [exact title]\n"
-        "If nothing relevant is found, say so and end with:\nProduct: NOT FOUND\n"
+        "If a relevant product is found, respond with its details\n"
+        "If nothing relevant is found in databases, say so and end with:\nSorry, I do not have any information about this product.\n"
+        "Keep the answers precise and to the point"
     )
     return prompt
 
