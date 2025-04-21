@@ -7,5 +7,5 @@ export default defineConfig({
     outDir: 'dist', // This must match "public" in firebase.json
   },
   plugins: [react()],
-  })
+  }
 })
