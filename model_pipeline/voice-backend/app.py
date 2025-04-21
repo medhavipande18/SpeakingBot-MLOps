@@ -14,8 +14,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 client = OpenAI()
 
 app = Flask(__name__)
-CORS(app, origins=["http://localhost:5173"])
-
+CORS(app, origins="*")
 
 def build_prompt_with_rag(user_question, context_memory):
     context = context_memory or "[No product context available]"
