@@ -28,7 +28,7 @@ jobs:
 
   deploy-frontend:
     name: Deploy React to Firebase
-    needs: deploy-backend
+    #needs: deploy-backend
     runs-on: ubuntu-latest
 
     steps:
