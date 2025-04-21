@@ -25,7 +25,7 @@ jobs:
           service: ${{ secrets.SERVICE_NAME }}
           region: ${{ secrets.REGION }}
           source: ./model_pipeline/voice-backend
-          dockerfile: ./model_pipeline/voice-backend/Dockerfile
+          dockerfile: Dockerfile
 
   deploy-frontend:
     name: Deploy React to Firebase
