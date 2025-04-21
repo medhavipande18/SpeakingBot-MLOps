@@ -78,8 +78,5 @@ coverage/
 credentials/
 *.json
 
-# Firebase cache (if using Firebase Hosting)
-.firebase/
-
 # GCP keys (if stored temporarily)
 *.key.json
