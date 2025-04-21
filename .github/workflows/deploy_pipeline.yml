@@ -6,25 +6,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy-backend:
-    name: Deploy Flask to Cloud Run
-    runs-on: ubuntu-latest
+  # deploy-backend:
+  #   name: Deploy Flask to Cloud Run
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@v3
+  #   steps:
+  #     - name: Checkout Repo
+  #       uses: actions/checkout@v3
 
-      - name: Authenticate with GCP
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+  #     - name: Authenticate with GCP
+  #       uses: google-github-actions/auth@v1
+  #       with:
+  #         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Deploy Flask to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@v1
-        with:
-          service: ${{ secrets.SERVICE_NAME }}
-          region: ${{ secrets.REGION }}
-          source: ./model_pipeline/voice-backend
+  #     - name: Deploy Flask to Cloud Run
+  #       uses: google-github-actions/deploy-cloudrun@v1
+  #       with:
+  #         service: ${{ secrets.SERVICE_NAME }}
+  #         region: ${{ secrets.REGION }}
+  #         source: ./model_pipeline/voice-backend
 
   deploy-frontend:
     name: Deploy React to Firebase
