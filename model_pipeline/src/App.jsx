@@ -76,7 +76,7 @@ const App = () => {
     try {
       const recentMemory = getMemory();
 
-      const res = await fetch("/chat", {
+      const res = await fetch("https://speakingbot-backend-761810913823.us-central1.run.app/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
