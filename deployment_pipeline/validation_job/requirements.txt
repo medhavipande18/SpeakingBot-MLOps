@@ -1,7 +1,0 @@
-openai
-faiss-cpu
-numpy
-pandas
-python-dotenv
-tqdm
-scikit-learn
