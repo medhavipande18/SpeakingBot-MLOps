@@ -9,8 +9,9 @@ jobs:
   deploy-backend:
     name: Deploy Flask to Cloud Run
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
       - name: Authenticate with GCP
@@ -18,33 +19,34 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-      - name: Deploy to Cloud Run
+      - name: Deploy Flask to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v1
         with:
-          service: speakingbot-backend
-          region: us-central1
+          service: ${{ secrets.SERVICE_NAME }}
+          region: ${{ secrets.REGION }}
           source: ./model_pipeline/voice-backend
 
   deploy-frontend:
-    name: Deploy React to Firebase Hosting
+    name: Deploy React to Firebase
     needs: deploy-backend
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout Repo
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'
+          node-version: 18
 
       - name: Build React App
         run: |
-          cd model_pipeline
+          cd src
           npm install
           npm run build
 
-      - name: Deploy to Firebase
+      - name: Deploy to Firebase Hosting
         uses: w9jds/firebase-action@v13.2.1
         with:
           args: deploy --only hosting
