@@ -50,3 +50,37 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+
+
+        run-model-validation:
+    name: Run Model Validation Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auth with GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Trigger Cloud Run Job
+        run: |
+          gcloud run jobs execute model-validation-job \
+            --region us-central1 \
+            --project mlops-speakingchatbot \
+            --wait
+
+  run-bias-detection:
+    name: Run Bias Detection Job
+    runs-on: ubuntu-latest
+    needs: run-model-validation
+    steps:
+      - name: Auth with GCP
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Trigger Cloud Run Job
+        run: |
+          gcloud run jobs execute bias-detection-job \
+            --region us-central1 \
+            --project mlops-speakingchatbot \
+            --wait
