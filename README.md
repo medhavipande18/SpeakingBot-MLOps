@@ -1,6 +1,7 @@
 # Speaking Chatbot - Data Pipeline
 
-Video of the final Deployed Product: https://drive.google.com/file/d/1BUkLdaBQ8eg1vQRrCqXoJ-yqv20NZA8M/view?usp=sharing
+Link to the product: https://mlops-speakingchatbot.web.app/
+Video of the final deployed product: https://drive.google.com/file/d/1BUkLdaBQ8eg1vQRrCqXoJ-yqv20NZA8M/view?usp=sharing
 
 ## Overview
 This project implements a robust data pipeline to process, clean, and analyze Amazon reviews for software products. The pipeline is designed for MLOps workflows, ensuring automated data acquisition, preprocessing, tracking, anomaly detection, and bias analysis. The data pipeline is orchestrated using Apache Airflow and supports scalable, reproducible workflows.
