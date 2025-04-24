@@ -1,0 +1,52 @@
+name: Run Drift Monitoring Job
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 12 * * *"  # every day at 8:00 AM ET (12:00 PM UTC)
+
+jobs:
+  run-monitoring-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Set up Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          version: 'latest'
+          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+      - name: Authenticate Docker with GCR
+        run: gcloud auth configure-docker
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Configure Docker for Artifact Registry
+      run: |
+        gcloud auth configure-docker LOCATION-docker.pkg.dev
+
+      - name: Build and Push Docker image
+        run: |
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/detect-drift-job ./deployment_pipeline
+          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/detect-drift-job
+
+      - name: Deploy Cloud Run Job
+        run: |
+          gcloud run jobs deploy detect-drift-job \
+            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/detect-drift-job \
+            --region ${{ secrets.REGION }} \
+            --set-env-vars SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }} \
+            --service-account ${{ secrets.SERVICE_NAME }}
+
+      - name: Execute Job Immediately (optional)
+        run: |
+          gcloud run jobs execute detect-drift-job --region=${{ secrets.REGION }}
