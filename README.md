@@ -81,7 +81,7 @@ This project implements an end-to-end MLOps pipeline for a **speaking chatbot** 
 
 ---
 
-## ✅ Replicating the Project on Any Machine
+## Replicating the Project on Any Machine
 
 ### Step 1: Clone the Repository
 
@@ -251,7 +251,6 @@ Or check the status in the Airflow UI at **[localhost:8080](http://localhost:808
 - **Optimization:** Modified `download_data.py` to **download reviews and metadata in parallel**, reducing runtime.
 ---
 
----
 ## 2. Model Pipeline Summary
 ### **1. Data Loading:**
 Loads software product review and metadata processed by the data pipeline. Supports integration with DVC-managed versions.<br>
@@ -300,8 +299,6 @@ Intermediate outputs like FAISS index and validation scores are stored in versio
 Backend fully containerized with Flask + FAISS logic. Supports testing, local execution, and cloud deployment.
 ---
 
-
----
 ## 3. Deployment Pipeline Summary
 - **Cloud Deployment:** Backend deployed to Google Cloud Run, frontend to Firebase Hosting.<br>
 - **CI/CD Pipeline:** Uses GitHub Actions to trigger deployment automatically on main branch changes.<br>
