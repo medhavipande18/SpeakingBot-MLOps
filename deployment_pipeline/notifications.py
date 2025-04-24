@@ -1,12 +1,14 @@
-# deployment_pipeline/notifications.py
-
 import requests
 from config import SLACK_WEBHOOK_URL
 
 def send_slack_alert(message: str):
+    if not SLACK_WEBHOOK_URL:
+        print("⚠SLACK_WEBHOOK_URL not set. Skipping alert.")
+        return
+
     payload = {"text": f":warning: *Data Drift Alert* :warning:\n{message}"}
     try:
-        response = requests.post("https://hooks.slack.com/services/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", json=payload)
+        response = requests.post(SLACK_WEBHOOK_URL, json=payload)
         if response.status_code == 200:
             print("Slack alert sent")
         else:
