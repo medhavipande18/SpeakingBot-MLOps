@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.pyc
+
+# Credentials & secrets
+credentials/
+.env
+
+# Logs
+logs/
+*.log
+
+# Git
+.git
+.gitignore
+
+# Misc
+*.DS_Store
