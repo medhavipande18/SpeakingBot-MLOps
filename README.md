@@ -2,17 +2,11 @@
 
 **Live Website**: [https://mlops-speakingchatbot.web.app](https://mlops-speakingchatbot.web.app)  
 **Demo Video**: [Watch the demo](https://drive.google.com/file/d/1BUkLdaBQ8eg1vQRrCqXoJ-yqv20NZA8M/view?usp=sharing)
-
-## Overview
-
+**Overview**:
 This project implements an end-to-end MLOps pipeline for a **speaking chatbot** built to assist **visually impaired users** in navigating software product reviews. It integrates data preprocessing, anomaly and bias detection, vector-based semantic search (RAG), and full-stack deployment using **Airflow**, **FAISS**, **Flask**, **React**, **Docker**, **Firebase**, and **Google Cloud Run**.
 
 ---
-
-## Folder Structure
-
----
-## Folder Structure
+**Folder Structure**
 ```.
 ├── .github
 │   └── workflows
@@ -81,16 +75,16 @@ This project implements an end-to-end MLOps pipeline for a **speaking chatbot** 
 
 ---
 
-## Replicating the Project on Any Machine
+**Replicating the Project on Any Machine**
 
-### Step 1: Clone the Repository
+***Step 1: Clone the Repository***
 
 ```bash
 git clone https://github.com/medhavipande18/SpeakingBot-MLOps.git
 cd SpeakingBot-MLOps
 ``` 
 
-### Step 2: Set Up a Virtual Environment
+***Step 2: Set Up a Virtual Environment***
 ```bash
 python -m venv chatbot
 # Windows
@@ -100,7 +94,7 @@ source chatbot/bin/activate
 pip install -r requirements.txt
 ```
 
-### Step 3: Set Up Docker and Airflow (Data Pipeline)
+***Step 3: Set Up Docker and Airflow (Data Pipeline)***
 Ensure Docker is installed. Then run:
 ```bash
 docker-compose build
@@ -116,25 +110,25 @@ docker exec -it airflow_container airflow users create --username admin \
 docker exec -it airflow_container airflow scheduler
 ```
 
-### Step 4: Build FAISS Index
+***Step 4: Build FAISS Index***
 ```bash
 cd model_pipeline/voice-backend
 python build-faiss-index.py
 ```
 Ensure meta_software.json is available GCS.
 
-### Step 5: Run Model Validation and Bias Detection
+***Step 5: Run Model Validation and Bias Detection***
 ```bash
 python model_validation.py
 python bias_detection.py
 ```
 
-### Step 6: Run Backend Locally
+***Step 6: Run Backend Locally***
 ```bash
 cd model_pipeline/voice-backend
 flask run
 ```
-### Step 7: Run Frontend Locally
+***Step 7: Run Frontend Locally***
 ```bash
 cd model_pipeline/src
 npm install
@@ -142,7 +136,7 @@ npm run dev
 ```
 Visit http://localhost:5173
 
-Step 8: Cloud Deployment (CI/CD)
+***Step 8: Cloud Deployment (CI/CD)***
 Ensure:
 Firebase project is set up and linked
 GitHub secrets: GCP_PROJECT_ID, GCP_CREDENTIALS, SERVICE_NAME, REGION
@@ -152,15 +146,15 @@ Use build_index.yml manually if needed
 Use model_pipeline.yml for automatic backend + frontend deployment
 
 ---
-### Replicating the Data Pipeline on Another Machine
+**Replicating the Data Pipeline on Another Machine**
 To set up and run the pipeline on a different machine, follow these steps:
 
-### **1. Clone the Repository**
+***1. Clone the Repository***
 ```sh
 git clone https://github.com/medhavipande18/SpeakingBot-MLOps.git
 cd speaking-chatbot
 ```
-### **2. Set Up Virtual Environment**
+***2. Set Up Virtual Environment***
 ```sh
 python -m venv chatbot
 # Activate on Windows
@@ -169,7 +163,7 @@ chatbot\Scripts\activate
 source chatbot/bin/activate
 pip install -r requirements.txt
 ```
-### **3. Set Up Docker**
+***3. Set Up Docker***
 Ensure Docker is installed and running. Then, execute:
 ```sh
 docker-compose build
@@ -177,7 +171,7 @@ docker-compose up -d
 ```
 This will set up Airflow and other required services. Once done, visit **[localhost:8080](http://localhost:8080/)** to access Airflow.
 
-### **4. Initialize Airflow**
+***4. Initialize Airflow***
 Run the following commands to create an Airflow admin user and start the scheduler:
 ```sh
 docker exec -it airflow_container airflow users create --username admin \
@@ -191,7 +185,7 @@ Login using:
 - **Username:** `admin`
 - **Password:** `admin123`
 
-### **5. Verify Pipeline Execution**
+***5. Verify Pipeline Execution***
 Monitor logs and execution:
 ```sh
 tail -f logs/pipeline.log
@@ -199,7 +193,7 @@ tail -f logs/pipeline.log
 Or check the status in the Airflow UI at **[localhost:8080](http://localhost:8080/)**.
 
 ---
-## 1. Data Pipeline Summary
+**1. Data Pipeline Summary**
 - **Automated Data Acquisition**: Fetches data from Amazon Review datasets.<br>
 - **Data Preprocessing**: Cleans and transforms raw data into structured formats.<br>
 - **Anomaly Detection & Alerts**: Identifies missing values, outliers, and invalid formats with Slack notifications.<br>
@@ -209,7 +203,7 @@ Or check the status in the Airflow UI at **[localhost:8080](http://localhost:808
 - **Data Version Control (DVC)**: Implements **DVC** to track dataset versions and ensure reproducibility.<br>
 - **Dockerized Setup**: Fully containerized with **Docker & Docker Compose**.<br>
 
-## 1. Data Pipeline Components
+**1. Data Pipeline Components**
 
 **1. Data Acquisition**
 - **download_data.py**: Fetches Amazon review datasets and metadata.
@@ -251,7 +245,7 @@ Or check the status in the Airflow UI at **[localhost:8080](http://localhost:808
 - **Optimization:** Modified `download_data.py` to **download reviews and metadata in parallel**, reducing runtime.
 ---
 
-## 2. Model Pipeline Summary
+**2. Model Pipeline Summary**
 - **Data Loading**: Loads software product review and metadata processed by the data pipeline. Supports integration with DVC-managed versions.<br>
 - **FAISS Indexing**: Converts cleaned metadata into embeddings using SentenceTransformers and builds a FAISS index for semantic similarity search.<br>
 - **RAG Architecture**: 8Implements Retrieval-Augmented Generation where the top-k matched chunks from FAISS are used as context for query response.<br>
@@ -261,7 +255,7 @@ Or check the status in the Airflow UI at **[localhost:8080](http://localhost:808
 - **Dockerized Backend**: Flask backend containerized for reproducibility and Cloud Run deployment.<br>
 
 
-## Model Pipeline Components
+**Model Pipeline Components**
 
 **1. Data Loading and Preprocessing**: 
 Loads review and metadata from the data pipeline’s cleaned output. Converts product metadata into embeddings using SentenceTransformers. Uses .jsonl format for processed metadata.
@@ -290,7 +284,7 @@ bias_detection.py performs slicing analysis using Fairlearn. Evaluates fairness 
 **8. Dockerized Setup**: Backend fully containerized with Flask + FAISS logic. Supports testing, local execution, and cloud deployment.
 ---
 
-## 3. Deployment Pipeline Summary
+**3. Deployment Pipeline Summary**
 - **Cloud Deployment:** Backend deployed to Google Cloud Run, frontend to Firebase Hosting.<br>
 - **CI/CD Pipeline:** Uses GitHub Actions to trigger deployment automatically on main branch changes.<br>
 - **Artifact Management:** FAISS index stored in GCS, model versioning built into pipeline stages.<br>
@@ -300,7 +294,7 @@ bias_detection.py performs slicing analysis using Fairlearn. Evaluates fairness 
 - **Reproducible Environment:** Docker-based scripts and .yml files allow replication on any GCP account with linked Firebase.<br>
 
 
-## Deployment Pipeline Components
+**Deployment Pipeline Components**
 
 ### **1. Backend Deployment**
 Flask backend deployed via Cloud Run using Docker.
