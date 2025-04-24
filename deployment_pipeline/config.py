@@ -11,7 +11,7 @@ GCS_BUCKET_NAME = "speaking-chatbot-data"
 GCS_BLOB_NAME = "software_metadata_preprocessed.jsonl"
 
 # Slack settings
-SLACK_WEBHOOK_URL = os.getenv("https://hooks.slack.com/services/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")
+SLACK_WEBHOOK_URL = os.getenv("https://hooks.slack.com/services/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")
 
 # Threshold
 DRIFT_THRESHOLD = 0.2
