@@ -296,32 +296,32 @@ bias_detection.py performs slicing analysis using Fairlearn. Evaluates fairness 
 
 **Deployment Pipeline Components**
 
-### **1. Backend Deployment**
+**1. Backend Deployment**
 Flask backend deployed via Cloud Run using Docker.
 Triggered from model_pipeline.yml or deploy_pipeline.yml.
 Authenticated using GCP service account stored in GitHub secrets.
 
-### **2. Frontend Hosting**
+**2. Frontend Hosting**
 React app deployed to Firebase Hosting.
 Auto-triggered on commit or on backend deployment success.
 
-### **3. CI/CD Automation**
+**3. CI/CD Automation**
 deploy_pipeline.yml handles:
 - Backend build and deploy to Cloud Run
 - Frontend deploy to Firebase
 - Includes rollback on failure via GCP console controls.
 
-### **4. Monitoring & Drift Detection**
+**4. Monitoring & Drift Detection**
 Uses Evidently AI to compare recent inputs vs. training distributions.
 Triggers retraining script if cosine distance > threshold.
 Notifies Slack channel on drift detection or validation failures.
 
-### **5. Deployment Scripts**
+**5. Deployment Scripts**
 Dockerfile for backend
 .firebaserc and firebase.json for frontend
 Configurable .env for sensitive keys and project values
 
-### **6. Rollback & Notifications**
+**6. Rollback & Notifications**
 Deployment logs visible in Cloud Run Console and GitHub Actions.
 Rollback possible from Cloud Run UI if newer build fails.
 Slack notifications include:
