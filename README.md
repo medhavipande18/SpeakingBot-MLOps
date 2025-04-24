@@ -251,6 +251,8 @@ Or check the status in the Airflow UI at **[localhost:8080](http://localhost:808
 - **RAG Architecture**: 8Implements Retrieval-Augmented Generation where the top-k matched chunks from FAISS are used as context for query response.<br>
 - **Model Validation**: Validates RAG responses via semantic similarity against expected answers and monitors accuracy over time.<br>
 - **Bias Detection**: Applies slice-based evaluation using Fairlearn, checking semantic bias across dimensions like rating or category.<br>
+- **Notifications**: Alert is sent to slack in case of bias checks or model failures.
+- **Rollback Mechanism**: In case the newly trained model performs worse than the previous model.
 - **CI/CD Automation**: Uses GitHub Actions to trigger model indexing, validation, and deployment workflows.<br>
 - **Dockerized Backend**: Flask backend containerized for reproducibility and Cloud Run deployment.<br>
 
@@ -272,16 +274,22 @@ model_validation.py compares RAG responses with ground-truth answers. Uses cosin
 **5. Bias Detection**: 
 bias_detection.py performs slicing analysis using Fairlearn. Evaluates fairness across product categories, review length, etc. Slack alerts are triggered if significant disparity is found.
 
-**6. CI/CD Integration**:
+**6. Notifications & Alerts**: 
+Sends Slack alerts for validation results, bias checks, and pipeline failures using a centralized notification script.
+
+**7. Rollback Mechanism**: 
+Restores the previous FAISS index if the current model fails validation, ensuring stable production performance.
+
+**8. CI/CD Integration**:
 - model_pipeline.yml automates:
   > Index rebuilding
   > Backend deployment to Cloud Run
   > Frontend deployment to Firebase
 - build_index.yml supports manual reindexing.
 
-**7. Experiment Tracking & Reporting**: Intermediate outputs like FAISS index and validation scores are stored in versioned paths. Future extension includes MLflow or WandB for full experiment logs.
+**9. Experiment Tracking & Reporting**: Intermediate outputs like FAISS index and validation scores are stored in versioned paths. Future extension includes MLflow or WandB for full experiment logs.
 
-**8. Dockerized Setup**: Backend fully containerized with Flask + FAISS logic. Supports testing, local execution, and cloud deployment.
+**10. Dockerized Setup**: Backend fully containerized with Flask + FAISS logic. Supports testing, local execution, and cloud deployment.
 ---
 
 **3. Deployment Pipeline Summary**
