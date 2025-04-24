@@ -32,15 +32,15 @@ jobs:
         run: |
           gcloud auth configure-docker us-central1-docker.pkg.dev
 
-      - name: Build and Push Docker image
+      - name: Build and Push Docker image to Artifact Registry
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/detect-drift-job ./deployment_pipeline
-          docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/detect-drift-job
+        docker build -t us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/drift-jobs/detect-drift-job ./deployment_pipeline
+        docker push us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/drift-jobs/detect-drift-job
 
       - name: Deploy Cloud Run Job
         run: |
           gcloud run jobs deploy detect-drift-job \
-            --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/detect-drift-job \
+            --image us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT_ID }}/drift-jobs/detect-drift-job
             --region ${{ secrets.REGION }} \
             --set-env-vars SLACK_WEBHOOK_URL=${{ secrets.SLACK_WEBHOOK_URL }} \
             --service-account ${{ secrets.SERVICE_NAME }}
