@@ -211,92 +211,83 @@ Or check the status in the Airflow UI at **[localhost:8080](http://localhost:808
 
 ## 1. Data Pipeline Components
 
-### **1. Data Acquisition**
+**1. Data Acquisition**
 - **download_data.py**: Fetches Amazon review datasets and metadata.
 - Extracts and saves files locally.
 
-### **2. Data Preprocessing**
+**2. Data Preprocessing**
 - **clean_data.py**: Cleans data, removes missing values, and formats columns.
 - Generates new features (e.g., **price_category, review_sentiment**).
 
-### **3. Anomaly Detection & Alerts**
+**3. Anomaly Detection & Alerts**
 - Detects missing values and outliers.
 - Sends Slack notifications for detected anomalies.
 
-### **4. Bias Detection & Mitigation**
+**4. Bias Detection & Mitigation**
 - Uses **Fairlearn** to analyze bias across groups (e.g., **reviewer gender, location**).
 - If bias is found, alerts are logged and sent via Slack.
 
-### **5. Orchestration with Airflow**
+**5. Orchestration with Airflow**
 - Uses **Airflow DAGs** to automate data processing.
 - Ensures logging and monitoring for pipeline tasks.
 
-### **6. Data Version Control (DVC)**
+**6. Data Version Control (DVC)**
 - **dvc_pipeline.py** in the **scripts/** folder ensures **dataset versioning**.
 - Tracks data lineage and ensures reproducibility.
 - Works seamlessly with the pipeline to fetch and store dataset versions.
 
-### **7. Schema & Statistics Generation**
+**7. Schema & Statistics Generation**
 - **generate_schema.py**: Automates schema and statistics generation.
 - Uses **DAG-based approach** to ensure schema validation over time.
 
-### **8. Automated Testing in Docker**
+**8. Automated Testing in Docker**
 - **run_tests.py** executes automated tests within the **Dockerized pipeline**.
 - Tests are executed as part of the **Airflow DAG**.
 - Logs and results can be monitored in the **Airflow UI** or through **Docker logs**.
 
-### **9. Pipeline Flow Optimization**
+**9. Pipeline Flow Optimization**
 - Uses **Airflow’s Gantt chart** to identify bottlenecks in execution.
 - **Observation:** The `download_data` task was the longest-running step.
 - **Optimization:** Modified `download_data.py` to **download reviews and metadata in parallel**, reducing runtime.
 ---
 
 ## 2. Model Pipeline Summary
-### **1. Data Loading:**
-Loads software product review and metadata processed by the data pipeline. Supports integration with DVC-managed versions.<br>
-### **2. FAISS Indexing:**
-Converts cleaned metadata into embeddings using SentenceTransformers and builds a FAISS index for semantic similarity search.<br>
-### **3. RAG Architecture:**
-Implements Retrieval-Augmented Generation where the top-k matched chunks from FAISS are used as context for query response.<br>
-### **4. Model Validation:**
-Validates RAG responses via semantic similarity against expected answers and monitors accuracy over time.<br>
-### **5. Bias Detection:**
-Applies slice-based evaluation using Fairlearn, checking semantic bias across dimensions like rating or category.<br>
-### **6.CI/CD Automation:**
-Uses GitHub Actions to trigger model indexing, validation, and deployment workflows.<br>
-### **6.Dockerized Backend:**
-Flask backend containerized for reproducibility and Cloud Run deployment.<br>
+- **Data Loading**: Loads software product review and metadata processed by the data pipeline. Supports integration with DVC-managed versions.<br>
+- **FAISS Indexing**: Converts cleaned metadata into embeddings using SentenceTransformers and builds a FAISS index for semantic similarity search.<br>
+- **RAG Architecture**: 8Implements Retrieval-Augmented Generation where the top-k matched chunks from FAISS are used as context for query response.<br>
+- **Model Validation**: Validates RAG responses via semantic similarity against expected answers and monitors accuracy over time.<br>
+- **Bias Detection**: Applies slice-based evaluation using Fairlearn, checking semantic bias across dimensions like rating or category.<br>
+- **CI/CD Automation**: Uses GitHub Actions to trigger model indexing, validation, and deployment workflows.<br>
+- **Dockerized Backend**: Flask backend containerized for reproducibility and Cloud Run deployment.<br>
 
 
 ## Model Pipeline Components
 
-### **1. Data Loading and Preprocessing**
+**1. Data Loading and Preprocessing**: 
 Loads review and metadata from the data pipeline’s cleaned output. Converts product metadata into embeddings using SentenceTransformers. Uses .jsonl format for processed metadata.
 
-### **2. FAISS Index Generation**
+**2. FAISS Index Generation**: 
 build-faiss-index.py encodes metadata to vectors. Builds and saves FAISS index locally or pushes to GCS. Index is used for fast top-k retrieval.
 
-### **3. RAG Query System**
+**3. RAG Query System**: 
 Retrieves context using FAISS before responding. Generates natural language answers using LLMs like OpenAI GPT/Gemini. Contextual memory enables follow-up question handling.
 
-### **4. Model Validation**
+**4. Model Validation**: 
 model_validation.py compares RAG responses with ground-truth answers. Uses cosine similarity and semantic scoring to evaluate quality. Logs validation results for every run.
 
-### **5. Bias Detection**
+**5. Bias Detection**: 
 bias_detection.py performs slicing analysis using Fairlearn. Evaluates fairness across product categories, review length, etc. Slack alerts are triggered if significant disparity is found.
 
-### **6. CI/CD Integration**
+**6. CI/CD Integration**:
 - model_pipeline.yml automates:
   > Index rebuilding
   > Backend deployment to Cloud Run
   > Frontend deployment to Firebase
 - build_index.yml supports manual reindexing.
 
-### **7. Experiment Tracking & Reporting**
-Intermediate outputs like FAISS index and validation scores are stored in versioned paths. Future extension includes MLflow or WandB for full experiment logs.
+**7. Experiment Tracking & Reporting**: Intermediate outputs like FAISS index and validation scores are stored in versioned paths. Future extension includes MLflow or WandB for full experiment logs.
 
-### **8. Dockerized Setup**
-Backend fully containerized with Flask + FAISS logic. Supports testing, local execution, and cloud deployment.
+**8. Dockerized Setup**: Backend fully containerized with Flask + FAISS logic. Supports testing, local execution, and cloud deployment.
 ---
 
 ## 3. Deployment Pipeline Summary
