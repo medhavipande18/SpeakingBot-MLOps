@@ -197,7 +197,6 @@ Monitor logs and execution:
 tail -f logs/pipeline.log
 ```
 Or check the status in the Airflow UI at **[localhost:8080](http://localhost:8080/)**.
----
 
 ---
 ## 1. Data Pipeline Summary
